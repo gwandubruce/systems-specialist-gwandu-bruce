@@ -1,0 +1,329 @@
+
+body{
+    font: 15px/1.5 Arial, Helvetica,sans-serif ;
+    padding: 0;
+    margin:0;
+    background-color: #f4f4f4;
+    overflow-x: hidden;
+}
+
+.container{
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+
+   
+}
+
+header{
+    background: #c79b50;
+    color: #ffffff;
+    padding: 0 40px;
+    border-bottom: #c79b50 3px solid;
+}
+header a{
+    color:#ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+header li{
+    float:left;
+    display:inline;
+    padding: 0 20px 0 20px;
+}
+header #branding{
+    float: left;
+}
+header nav{
+    float:right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85px;
+}
+
+header a:hover{
+    color:#000000;
+    font-weight: bold;
+   
+}
+header .current a{
+    color:  dodgerblue;
+    font-weight: bold;
+}
+footer{
+    padding:20px;
+    margin-top:260px;
+    color:#c79b50;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+.upload-container {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    margin-top: 60px;
+    min-height: 400px;
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.form{
+    box-sizing: border-box;
+}
+
+.upload-container h1{
+    text-align: center;
+}
+
+button {
+    box-shadow: none;
+    border: 1px solid transparent;
+    font-size: 18px;
+    outline: none;
+    line-height: 100%;
+    white-space: nowrap;
+    vertical-align: middle;
+    padding: 0.8rem;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    min-height: 38px;
+    width:100%;
+    text-transform: uppercase;
+    
+    
+}
+
+button.button_1 {
+    background-color: #c79b50;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
+    color: #fff;
+   text-align: center;
+   padding:14px;
+   box-sizing: border-box;
+   margin-top: 20px
+}
+.buttons{
+    text-align: center;
+}
+
+input ,label,option{
+    font-size: 1rem;
+}
+input {
+    border: 1px solid #c79b50;
+    padding: 10px 8px 10px 14px;
+    border-radius: 6px;
+    position: relative;
+    max-width: 100%; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+label{
+    font-weight: bold;
+}
+
+/* .file-input {
+    width: 100%;
+} */
+
+
+
+/* select{
+    border: 1px solid #FF0000;
+    padding: 6px;
+    max-width: 100%;
+}
+
+
+.select-input{
+    width: 100%;
+} */
+
+.search_categories{
+    font-size: 1rem;
+    padding: 10px 8px 10px 14px;
+    background: #fff;
+    border: 1px solid #c79b50;
+    border-radius: 6px;
+    position: relative;
+  }
+  .search_categories .select{
+    background:url('arrow.png') no-repeat;
+    background-position:80% center;
+    
+  }
+
+  .search_categories .select select{
+    background: transparent;
+    line-height: 1;
+    border: 0;
+    padding: 0;
+    border-radius: 0;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+    font-size: 1em;
+  }
+
+  .login-container {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    margin-top: 60px;
+    min-height: 400px;
+    position: relative;
+    padding: 20px;
+}
+
+.labels,.inputs{
+    font-size: 16px !important;
+}
+
+.login-container{
+    padding: 50px 40px;
+}
+
+/*upload status css*/
+table{
+    width: 100%;
+    box-sizing: border-box;
+    max-height: 400px;
+}
+
+th,table td{
+    border: 1px solid #cccccc !important;
+    padding:10px;
+    
+}
+
+th{
+    font-size: 18px;
+    text-align: left;
+}
+
+section.container{
+    padding:10px 40px;
+}
+
+h2{
+    font-size: 32px;
+}
+
+footer{
+   position: fixed;
+   bottom:0;
+   left:0;
+   right:0;
+   box-sizing: border-box;
+}
+
+footer.footer{
+    position: relative !important;
+   margin-top: 40px;
+   box-sizing: border-box;
+}
+
+button#redirect-btn{
+    width:auto !important;
+    background-color: #c79b50;
+    color:#fff;
+    font-size: 16px;
+}
+
+th{
+    width: 50%;
+}
+
+.logout{
+    background-color: transparent !important;
+    color:#fff;
+    font-size: 16px;
+}
+
+li.all-li{
+    margin-top: 10px;
+}
+
+.button_disabled{
+    cursor:not-allowed;
+}
+
+section.faq{
+    border:1px solid #eeeeee;
+    margin:20px 40px;
+    width:94%;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    box-shadow: 0 4px 18px rgb(11 33 74 / 10%), 0 -2px 4px rgb(11 33 74 / 3%);
+}
+
+section .uploadStatus{
+    padding:10px 50px 40px 40px;
+    border:1px solid #eeeeee;
+    width:94%;
+    margin:40px 0;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    box-shadow: 0 4px 18px rgb(11 33 74 / 10%), 0 -2px 4px rgb(11 33 74 / 3%);
+
+}
+
+.success{
+    color:green;
+    margin: auto;
+    font-size:100px;
+}
+
+.error{
+    color:red;
+    margin: auto;
+    font-size:100px;
+}
+
+section .uploadMessage{
+    padding:40px 40px 80px 40px;
+    border:1px solid #eeeeee;
+    width:94%;
+    margin:40px 0;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    box-shadow: 0 4px 18px rgb(11 33 74 / 10%), 0 -2px 4px rgb(11 33 74 / 3%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+section.faq img{
+    object-fit: contain;
+    height:500px;
+    margin:auto;
+    width: 100%;
+}
+
+
+section.faq h3{
+    font-size:22px;
+    margin-bottom: 0;
+}
+
+section.faq h4{
+    font-size:18px;
+    margin-bottom: 0;
+}
+
+section.faq h5{
+    font-size:16px;
+    margin-bottom: 0;
+}
+
