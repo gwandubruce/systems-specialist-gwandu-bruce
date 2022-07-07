@@ -1,14 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package co.nmb.systemsdevelopmentspecialist.controllers;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -22,7 +16,9 @@ import co.nmb.systemsdevelopmentspecialist.services.EmployeeStatusResponseServic
 import co.nmb.systemsdevelopmentspecialist.services.FileStorageService;
 import co.nmb.systemsdevelopmentspecialist.services.FileUploadService;
 import org.slf4j.Logger;
+
 import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -52,7 +48,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 @Controller
 public class FileController {
 
-    private Map<String, Map<String,String>> status;
+    private Map<String, Map<String, String>> status;
 
     private String message, button;
 
@@ -66,9 +62,6 @@ public class FileController {
     @Autowired
     private EmployeeService employeeService;
 
-//
-//    @Autowired
-//    private HvSubscriberService hvSubscriberService;
 
     @Autowired
     private FileStorageService fileStorageService;
@@ -111,14 +104,6 @@ public class FileController {
     }
 
 
-
-//    @GetMapping("/statusResult")
-//    public boolean checkStatusIndex(HVSubscriber customer) {
-//        EmployeeStatusResponseService status = new EmployeeStatusResponseService();
-//        boolean theStatus = status.checkingStatus(customer);
-//        return theStatus;
-//    }
-
     @GetMapping("/userStatus")
     public String checkUserStatusIndex() {
         return "userStatus";
@@ -143,7 +128,7 @@ public class FileController {
 
     @PostMapping("/uploadFileFrontEnd")
     public String uploadFileFrontEnd(@RequestParam("file") MultipartFile file, @RequestParam("search_categories") String paymentCategory,
-            RedirectAttributes redirectAttributes) {
+                                     RedirectAttributes redirectAttributes) {
 
         if (file.isEmpty()) {
             redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
@@ -161,8 +146,7 @@ public class FileController {
             message = "All employees were successfully paid their salaries.";
             return "redirect:/uploadMessage";
         }
-//        redirectAttributes.addFlashAttribute("message",
-//                "You successfully uploaded '" + file.getOriginalFilename() + "'" + " for " + pack + " package");
+
         redirectAttributes.addFlashAttribute("message",
                 status);
 
@@ -184,8 +168,8 @@ public class FileController {
     }
 
     @GetMapping("/statusResult")
-    public String userStatus(Model model){
-        model.addAttribute("stats",theStats);
+    public String userStatus(Model model) {
+        model.addAttribute("stats", theStats);
         return "statusResult";
     }
 
@@ -194,13 +178,7 @@ public class FileController {
         model.addAttribute("results", status);
         return "uploadStatus";
     }
-//    @PostMapping("/uploadMultipleFiles")
-//    public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
-//        return Arrays.asList(files)
-//                .stream()
-//                .map(file -> uploadFile(file))
-//                .collect(Collectors.toList());
-//    }
+
 
     @GetMapping("/downloadFile/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
@@ -243,10 +221,9 @@ public class FileController {
     }
 
 
-
     @RequestMapping("/salary/approve/{id}")
     public String approveEmployee(@PathVariable("id") Long id) {
-        Optional<Employee>  employee = employeeRepository.findById(id);
+        Optional<Employee> employee = employeeRepository.findById(id);
 
 
         if (!employee.isPresent()) {
@@ -266,7 +243,7 @@ public class FileController {
 
     @RequestMapping("/salary/reject/{id}")
     public String rejectEmployee(@PathVariable("id") Long id) {
-        Optional<Employee>  employee = employeeRepository.findById(id);
+        Optional<Employee> employee = employeeRepository.findById(id);
 
 
         if (!employee.isPresent()) {
@@ -290,7 +267,7 @@ public class FileController {
 
         if (employeeRepository.findByAccountNumber(employee.getAccountNumber()) == null) {
 
-           return "updateError";
+            return "updateError";
         }
 
         Employee employee1 = employeeRepository.findByAccountNumber(employee.getAccountNumber()).orElse(new Employee());
@@ -299,109 +276,92 @@ public class FileController {
         employee1.setFullName(employee.getFullName());
         employee1.setDatePaid(LocalDate.now());
 
-         return "updateSuccess";
+        return "updateSuccess";
 
     }
 
 
-
-
-       // Displaying all employees and pagination
+    // Displaying all employees and pagination
     String stat = "";
 
     @GetMapping("/Employees")
- public String home(Model m) {
-  return display(1, m);
+    public String home(Model m) {
+        return display(1, m);
 
- }
-
-
-
- @GetMapping("/page/{pageNo}")
- public String display(@PathVariable (value = "pageNo") int pageNo, Model m) {
-
-  int pageSize = 5;   // How many records on per page
-  Page<Employee> page= employeeService.findByPagination(pageNo, pageSize);
-  List<Employee> list = page.getContent();
-  m.addAttribute("currentPage", pageNo);
-  m.addAttribute("totalPages", page.getTotalPages());
-  m.addAttribute("totalRecords", page.getTotalElements());
-  m.addAttribute("list", list);
-  return "/Employees";
-
- }
+    }
 
 
+    @GetMapping("/page/{pageNo}")
+    public String display(@PathVariable(value = "pageNo") int pageNo, Model m) {
 
- // show edit subscriber page and form
- @RequestMapping("/edit/{id}")
-	public ModelAndView showEditEmployeeForm(@PathVariable(name = "id") Long id) {
+        int pageSize = 5;   // How many records on per page
+        Page<Employee> page = employeeService.findByPagination(pageNo, pageSize);
+        List<Employee> list = page.getContent();
+        m.addAttribute("currentPage", pageNo);
+        m.addAttribute("totalPages", page.getTotalPages());
+        m.addAttribute("totalRecords", page.getTotalElements());
+        m.addAttribute("list", list);
+        return "/Employees";
+
+    }
+
+
+    // show edit subscriber page and form
+    @RequestMapping("/edit/{id}")
+    public ModelAndView showEditEmployeeForm(@PathVariable(name = "id") Long id) {
 
         Long identity = Long.valueOf(id);
-		ModelAndView mav = new ModelAndView("updateSubscribers");
+        ModelAndView mav = new ModelAndView("updateSubscribers");
 
-		Employee employee = employeeService.getEmployee(identity);
-		mav.addObject("doctor", employee);
+        Employee employee = employeeService.getEmployee(identity);
+        mav.addObject("doctor", employee);
 
-		return mav;
-	}
-
-	@RequestMapping("/enterSingle")
-	public ModelAndView showEditEmployeeForm() {
-
-		ModelAndView mav = new ModelAndView("enterSingle");
+        return mav;
+    }
 
 
-		return mav;
-	}
-
-
-	@RequestMapping("/delete/{id}")
-	public String deleteEmployee(@PathVariable(name = "id") Long id) {
+    @RequestMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable(name = "id") Long id) {
         Long identity = Long.valueOf(id);
-		employeeService.deleteEmployee(identity);
+        employeeService.deleteEmployee(identity);
 
-		return "redirect:/";
-	}
-
-
+        return "redirect:/";
+    }
 
 
     @PutMapping("/update_user/{id}")
-public ResponseEntity<Object> updateEmployee(@RequestBody Employee employee, @PathVariable long id) {
+    public ResponseEntity<Object> updateEmployee(@RequestBody Employee employee, @PathVariable long id) {
 
-	Optional<Employee> employeeOptional = employeeRepository.findById(id);
+        Optional<Employee> employeeOptional = employeeRepository.findById(id);
 
-	if (!employeeOptional.isPresent())
-		return ResponseEntity.notFound().build();
+        if (!employeeOptional.isPresent())
+            return ResponseEntity.notFound().build();
 
         employee.setSalaryStatus(employee.getSalaryStatus());
 
-	employeeRepository.save(employee);
+        employeeRepository.save(employee);
 
-	return ResponseEntity.noContent().build();
-}
-
-
+        return ResponseEntity.noContent().build();
+    }
 
 
-        // Search employee by Account Number
+    // Search employee by Account Number
 
-        @GetMapping("/searchSubscriber")
+    @GetMapping("/searchSubscriber")
     public String add(Model model) {
-     List<Employee> employees = employeeService.listAllEmployees();
+        List<Employee> employees = employeeService.listAllEmployees();
         model.addAttribute("subscriber", new Employee());
         return "/searchSubscriber";
     }
 
 
     @PostMapping("/search")
-     public String doSearchEmployee(@ModelAttribute("employeeSearchFormData")  Employee formData, Model model) {
-             employeeService.findByAccountNumber(formData.getAccountNumber())
-                     .ifPresent(emp -> model.addAttribute("subscriber", emp));
+    public String doSearchEmployee(@ModelAttribute("employeeSearchFormData") Employee formData, Model model) {
+        employeeService.findByAccountNumber(formData.getAccountNumber())
+                .ifPresent(emp -> model.addAttribute("subscriber", emp));
 
-            return "/searchSubscriber";
-     }
+        return "/searchSubscriber";
+    }
 
 
 }
